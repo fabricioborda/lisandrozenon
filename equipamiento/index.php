@@ -13,9 +13,13 @@ require __DIR__ . '/../includes/header.php';
 ?>
   <main id="main">
 <?php require __DIR__ . '/../includes/breadcrumb.php'; ?>
+    <div class="container pt-5">
+      <h1 class="page-title">Equipamiento e instrumental utilizado</h1>
+    </div>
+<?php require __DIR__ . '/../includes/torre-hd-destacado.php'; ?>
     <section id="equipamiento2" class="section">
       <div class="container">
-        <h1 class="page-title">Equipamiento e instrumental utilizado</h1>
+        <h2 class="section-title center">Instrumental y equipos</h2>
         <div class="gallery-equipamiento2 swiper" role="region" aria-label="Equipamiento e instrumental">
           <div class="swiper-wrapper">
 <?php foreach ($equip as $i => [$f, $alt, $cap]): $src = '/assets/img/equipamiento/' . $f . '.jpg'; ?>

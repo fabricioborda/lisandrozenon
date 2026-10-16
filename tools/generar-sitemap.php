@@ -14,7 +14,7 @@ $contMtime = filemtime($root . '/includes/contenido.php');
 $urls = [];
 $fijas = ['/' => 'index.php', '/sobre-mi/' => 'sobre-mi/index.php', '/patologias/' => 'patologias/index.php',
     '/tratamientos/' => 'tratamientos/index.php', '/cirugia-sin-huellas/' => 'cirugia-sin-huellas/index.php',
-    '/equipamiento/' => 'equipamiento/index.php', '/contacto/' => 'contacto/index.php'];
+    '/equipamiento/' => 'equipamiento/index.php', '/equipamiento/videoendoscopia-alta-definicion/' => 'equipamiento/videoendoscopia-alta-definicion/index.php', '/contacto/' => 'contacto/index.php'];
 foreach ($fijas as $path => $file) {
     $urls[$path] = max(filemtime($root . '/' . $file), $path === '/patologias/' || $path === '/tratamientos/' ? $contMtime : 0);
 }

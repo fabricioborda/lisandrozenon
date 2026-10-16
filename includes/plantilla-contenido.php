@@ -62,6 +62,12 @@ require __DIR__ . '/header.php';
               <figcaption><?= h($d['imagen'][2]) ?></figcaption>
             </figure>
 <?php endif; ?>
+<?php if (!empty($d['equipo_hd'])): $torre = require __DIR__ . '/torre-hd.php'; ?>
+            <a class="equip-feature" href="<?= h($torre['url']) ?>">
+              <?= picture($torre['foto_torre'][0], $torre['foto_torre'][1]) ?>
+              <span><small>Equipamiento</small><strong><?= h($torre['equipo']) ?></strong>Imagen en alta definición, cromoendoscopia virtual e insuflación con CO₂. Ver el equipo <?= icono('arrow-right') ?></span>
+            </a>
+<?php endif; ?>
 <?php require __DIR__ . '/cta-turno.php'; ?>
           </div>
         </div>

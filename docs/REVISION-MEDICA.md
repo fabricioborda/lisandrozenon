@@ -15,6 +15,19 @@ Estos textos **no se modificaron** (solo se corrigió ortografía y HTML). Los t
 | 7 | tratamientos → `videoendoscopia-digestiva-alta` y `-baja` | Solo tienen video + pie de foto del equipo | No existe texto descriptivo. Convendría agregar: qué es, para qué sirve, preparación, duración. (No se inventó contenido.) |
 | 8 | Sin fecha de “última revisión médica” | — | Cuando el Dr. revise las páginas, se puede agregar esa fecha en la plantilla. |
 
+## Torre de videoendoscopia HD (pendiente de aprobación antes de publicar)
+
+Textos nuevos en `includes/torre-hd.php` (se muestran en la home, en Equipamiento, en `/equipamiento/videoendoscopia-alta-definicion/` y en las páginas de Videoendoscopia). Están redactados a partir del folleto y la web del fabricante (SonoScape HD-500) y del distribuidor. **El Dr. debe aprobar estas afirmaciones de beneficio para el paciente**:
+
+| # | Dónde | Texto | Qué confirmar |
+|---|---|---|---|
+| T1 | `intro` | “…para realizar estudios más precisos y con mayor confort para el paciente.” | ¿Está de acuerdo con “más precisos” y “mayor confort”? |
+| T2 | Cromoendoscopia virtual (VIST) | “…lo que ayuda a detectar lesiones en etapas tempranas.” | El fabricante habla de “detección de lesiones y predicción de tumores en etapas tempranas”. |
+| T3 | Insuflación con CO₂ | “El CO₂ se absorbe más rápido que el aire, lo que reduce la distensión y las molestias después del estudio.” | No figura en el folleto: es un beneficio clínico general del CO₂ que agregué. Confirmar o quitar. |
+| T4 | Imagen HD / water jet / LED / registro digital | Descripciones técnicas del equipo | Confirmar que coinciden con su equipo (monitor de 24”, endoscopios con water jet, estación DICOM). |
+
+No se mencionan lugar de instalación ni modelos de endoscopios (decisión del usuario) y no se afirma exclusividad (“única en la región”). La torre Olympus CV-160 queda como equipo de respaldo en la galería de Equipamiento.
+
 ## Datos a confirmar (están en `includes/config.php`)
 
 - Teléfonos, direcciones y **horarios** de ambos consultorios (Imágenes Médicas Dr. Danura: lunes a viernes 16-20; Sanatorio San Roque: lunes a viernes 8-12) y si sigue atendiendo en ambos lugares.

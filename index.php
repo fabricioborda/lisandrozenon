@@ -102,6 +102,8 @@ require __DIR__ . '/includes/header.php';
       </div>
     </section>
 
+<?php require __DIR__ . '/includes/torre-hd-destacado.php'; ?>
+
     <!-- Cirugía sin huellas -->
     <section id="cirugiasinhuellas" class="section section-alt">
       <div class="container">
@@ -123,13 +125,19 @@ require __DIR__ . '/includes/header.php';
     <section id="equipamiento2" class="section">
       <div class="container">
         <h2 class="section-title center">Equipamiento e instrumental utilizado</h2>
-        <div class="row g-3">
-<?php foreach (array_slice($equip, 2, 4) as [$f, $alt, $cap]): ?>
-          <div class="col-6 col-md-3">
-            <figure class="equip-thumb">
-              <?= picture('/assets/img/equipamiento/' . $f . '.jpg', $alt, ['class' => 'img-fluid']) ?>
-            </figure>
-          </div>
+        <div class="equip-grid">
+<?php
+// La torre nueva va destacada en vertical (foto original 3:4, se ven monitor y equipos); las otras 4 en 2x2.
+$fotosHome = ['equipamiento-laparoscopia', 'ligasure-valleylab-ls10', 'camara-full-hd', 'torre-laparoscopia'];
+$equipHome = array_merge([['torre-hd-instalada', 'Torre de videoendoscopia de alta definición SonoScape HD-500', '']],
+    array_values(array_filter($equip, fn($e) => in_array($e[0], $fotosHome, true))));
+foreach ($equipHome as $i => [$f, $alt, $cap]): ?>
+          <figure class="equip-thumb<?= $i === 0 ? ' is-featured' : '' ?>">
+            <?= picture('/assets/img/equipamiento/' . $f . '.jpg', $alt, ['class' => 'img-fluid']) ?>
+<?php if ($i === 0): ?>
+            <figcaption>Nueva torre de videoendoscopia HD</figcaption>
+<?php endif; ?>
+          </figure>
 <?php endforeach; ?>
         </div>
         <p class="center mt-4"><a class="btn-primary-x" href="/equipamiento/">Ver todo el equipamiento <?= icono('arrow-right') ?></a></p>
