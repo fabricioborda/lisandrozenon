@@ -23,7 +23,10 @@ $sub = function (string $tipo, string $key, string $label, string $base) use ($c
 
   <header id="header" class="site-header">
     <div class="container header-inner">
-      <a class="logo" href="/">Dr. Lisandro Zenón <span>Médico Cirujano</span></a>
+      <a class="logo" href="/" aria-label="Dr. Lisandro Zenón, Médico Cirujano: ir al inicio">
+        <img class="logo-mark" src="/assets/img/logo/monograma-azul.png" alt="" width="55" height="120">
+        <span class="logo-text">Dr. Lisandro Zenón <span>Médico Cirujano</span></span>
+      </a>
 
       <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="navbar" aria-label="Abrir menú"><?= icono('list') ?></button>
 

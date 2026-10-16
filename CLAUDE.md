@@ -32,11 +32,11 @@ includes/
   .htaccess                   denies direct access to includes/
 assets/css/style.css          only stylesheet to edit (CSS variables in :root)
 assets/js/main.js             vanilla JS: menu, hero rotation, click-to-load maps, Swiper/GLightbox init (guarded), GA contact events
-assets/img/ assets/video/     webp next to every jpg; videos are compressed mp4 + jpg poster; kebab-case names
+assets/img/ assets/video/     logo/ (monograma + logo, azul y blanco; marca #05114d), icon-*.png; webp next to every jpg; videos are compressed mp4 + jpg poster; kebab-case names
 assets/vendor/                Bootstrap (css), Bootstrap Icons, Swiper, GLightbox, php-email-form (unused); don't edit
 forms/                        legacy template PHP forms, unused and blocked by forms/.htaccess (no contact form: WhatsApp is the CTA)
 tools/                        dev scripts, NOT deployed (see docs/AGREGAR-CONTENIDO.md)
-docs/                         plan, REVISION-MEDICA.md, DEPLOY.md, AGREGAR-CONTENIDO.md, auditoria/ (docs/capturas is gitignored), NOT deployed
+docs/                         plan, marca/ (logo original), REVISION-MEDICA.md, DEPLOY.md, AGREGAR-CONTENIDO.md, auditoria/ (docs/capturas is gitignored), NOT deployed
 .htaccess robots.txt sitemap.xml site.webmanifest
 ```
 

@@ -27,7 +27,7 @@ $ogTitle   = $ogTitle ?? $title;
 <?php else: ?>
   <link rel="canonical" href="<?= h(url_abs($canonical)) ?>">
 <?php endif; ?>
-  <meta name="theme-color" content="#4378f4">
+  <meta name="theme-color" content="#05114d">
 
   <meta property="og:type" content="<?= h($ogType) ?>">
   <meta property="og:locale" content="es_AR">
@@ -43,6 +43,7 @@ $ogTitle   = $ogTitle ?? $title;
   <meta name="twitter:description" content="<?= h($description) ?>">
   <meta name="twitter:image" content="<?= h(url_abs($ogImage)) ?>">
 
+  <link rel="icon" href="/favicon.ico" sizes="any">
   <link rel="icon" href="/assets/img/favicon.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">

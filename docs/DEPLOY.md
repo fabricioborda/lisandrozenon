@@ -11,7 +11,7 @@ El deploy lo hace el usuario (subida manual por SFTP). El agente nunca despliega
 
 ## Qué subir y qué NO subir
 
-Subir: `index.php`, `404.php`, `.htaccess`, `robots.txt`, `sitemap.xml`, `site.webmanifest`, `assets/`, `includes/`, `sobre-mi/`, `patologias/`, `tratamientos/`, `cirugia-sin-huellas/`, `equipamiento/`, `contacto/`, `forms/` (con su `.htaccess` que bloquea el acceso; ver abajo).
+Subir: `index.php`, `404.php`, `favicon.ico`, `.htaccess`, `robots.txt`, `sitemap.xml`, `site.webmanifest`, `assets/`, `includes/`, `sobre-mi/`, `patologias/`, `tratamientos/`, `cirugia-sin-huellas/`, `equipamiento/`, `contacto/`, `forms/` (con su `.htaccess` que bloquea el acceso; ver abajo).
 
 **NO subir:** `docs/`, `tools/`, `.git/`, `.vscode/`, `.claude/`, `CLAUDE.md`, `.gitignore`, `.editorconfig`, `docs/capturas/`. (El `.htaccess` devuelve 404 para esas rutas por si se suben por error.) Dentro de `assets/vendor/` basta con los archivos `.min.*` y `fonts/` de cada librería; los `.map`, `.rtl`, `.scss`, `.esm`, etc. no se usan.
 

@@ -28,8 +28,8 @@ require __DIR__ . '/includes/header.php';
       </div>
       <div class="hero-overlay"></div>
       <div class="container hero-content">
-        <h1>Dr. Lisandro Zenón <span>Médico Cirujano en Goya, Corrientes</span></h1>
-        <p>Cirugía general, Cirugía sin Huellas, laparoscópica y videoendoscopia digestiva</p>
+        <h1>Dr. Lisandro Zenón <span>Médico Cirujano</span></h1>
+        <p>Cirugía general, Cirugía sin Huellas, laparoscópica y videoendoscopia digestiva en Goya, Corrientes.</p>
         <div class="hero-cta">
           <a class="btn-wa btn-wa-lg" href="<?= h(wa_url()) ?>" target="_blank" rel="noopener noreferrer"><?= icono('whatsapp') ?> Pedir turno por WhatsApp</a>
           <a class="btn-light-outline" href="#tratamientos">Ver tratamientos</a>

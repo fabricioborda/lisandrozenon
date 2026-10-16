@@ -113,6 +113,7 @@ function schema_medico(): array
         'name' => cfg('nombre'),
         'url' => url_abs('/'),
         'image' => url_abs('/assets/img/dr-lisandro-zenon.jpg'),
+        'logo' => url_abs('/assets/img/icon-512.png'),
         'email' => cfg('email'),
         'telephone' => $c[1]['tel'],
         'medicalSpecialty' => 'Surgical',
