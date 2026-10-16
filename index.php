@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/includes/functions.php';
 $cont = contenido();
-$title = 'Dr. Lisandro Zenón | Cirujano General en Goya, Corrientes';
+$title = 'Dr. Lisandro Zenón | Médico Cirujano Endoscopista en Goya';
 $description = 'Cirujano general en Goya, Corrientes. Cirugía laparoscópica, cirugía sin huellas y videoendoscopia digestiva. Atiende en Sanatorio San Roque y en Dr. Danura.';
 $canonical = '/';
 $nav = 'home';
@@ -11,8 +11,11 @@ $mapas = false;
 $equip = require __DIR__ . '/includes/equipamiento.php';
 $slides = [
     ['/assets/img/slide/quirofano-laparoscopia.jpg', 'Dr. Lisandro Zenón operando en quirófano con equipo de cirugía laparoscópica'],
-    ['/assets/img/slide/formacion-cencil.jpg', 'Grupo de médicos y residentes en el Centro de Entrenamiento en Laparoscopia'],
-    ['/assets/img/slide/congreso-cirugia.jpg', 'Dr. Lisandro Zenón en el 90° Congreso Argentino de Cirugía'],
+    // [imagen, descripción, encuadre escritorio, encuadre móvil, imagen móvil opcional, encuadre tablet opcional]
+    // (object-position; la foto siempre cubre todo el fondo)
+    ['/assets/img/slide/equipo-cencil.jpg', 'Equipo de cirujanos en el Centro de Entrenamiento e Investigación en Cirugía Laparoscópica y Mini-invasiva', '50% 15%', '50% 50%'],
+    // Foto vertical: en escritorio/tablet una composición apaisada (cabeza a cintura, costados desenfocados con tinte azul); en móvil la foto original
+    ['/assets/img/slide/dr-zenon-cencil-ancha.jpg', 'Dr. Lisandro Zenón en el Centro de Entrenamiento e Investigación en Cirugía Laparoscópica y Mini-invasiva de la Facultad de Medicina, Corrientes', '75% 50%', '90% 10%', '/assets/img/slide/dr-zenon-cencil.jpg', '80% 50%'],
 ];
 require __DIR__ . '/includes/head.php';
 require __DIR__ . '/includes/header.php';
@@ -22,13 +25,14 @@ require __DIR__ . '/includes/header.php';
     <!-- Inicio -->
     <section id="inicio" class="hero" data-hero>
       <div class="hero-slides" aria-hidden="true">
-<?php foreach ($slides as $i => [$src, $alt]): ?>
-        <div class="hero-slide<?= $i === 0 ? ' is-active' : '' ?>"><?= picture($src, '', ['priority' => $i === 0, 'class' => 'hero-img']) ?></div>
+<?php foreach ($slides as $i => $sl): ?>
+<?php $pos = (!empty($sl[2]) ? '--pos: ' . $sl[2] . ';' : '') . (!empty($sl[3]) ? ' --pos-m: ' . $sl[3] . ';' : '') . (!empty($sl[5]) ? ' --pos-t: ' . $sl[5] . ';' : ''); ?>
+        <div class="hero-slide<?= $i === 0 ? ' is-active' : '' ?>"><?= picture($sl[0], '', ['priority' => $i === 0, 'class' => 'hero-img', 'src_m' => $sl[4] ?? null, 'attrs' => $pos ? 'style="' . h(trim($pos)) . '"' : '']) ?></div>
 <?php endforeach; ?>
       </div>
       <div class="hero-overlay"></div>
       <div class="container hero-content">
-        <h1>Dr. Lisandro Zenón <span>Médico Cirujano</span></h1>
+        <h1>Dr. Lisandro Benjamín Zenón <span>Médico Cirujano Endoscopista</span></h1>
         <p>Cirugía general, Cirugía sin Huellas, laparoscópica y videoendoscopia digestiva en Goya, Corrientes.</p>
         <div class="hero-cta">
           <a class="btn-wa btn-wa-lg" href="<?= h(wa_url()) ?>" target="_blank" rel="noopener noreferrer"><?= icono('whatsapp') ?> Pedir turno por WhatsApp</a>
@@ -36,7 +40,7 @@ require __DIR__ . '/includes/header.php';
         </div>
       </div>
       <div class="hero-dots" role="group" aria-label="Imágenes de portada">
-<?php foreach ($slides as $i => [$src, $alt]): ?>
+<?php foreach ($slides as $i => $sl): $alt = $sl[1]; ?>
         <button type="button" class="hero-dot<?= $i === 0 ? ' is-active' : '' ?>" aria-label="Mostrar imagen <?= $i + 1 ?>: <?= h($alt) ?>" aria-pressed="<?= $i === 0 ? 'true' : 'false' ?>"></button>
 <?php endforeach; ?>
       </div>

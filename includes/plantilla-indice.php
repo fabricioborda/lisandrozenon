@@ -7,7 +7,7 @@ $base = '/' . $tipo . '/';
 $canonical = $base;
 $nav = $tipo;
 $nombre = $esPat ? 'Patologías frecuentes' : 'Tratamientos que realizo';
-$title = $esPat ? 'Patologías frecuentes | Dr. Lisandro Zenón, cirujano en Goya' : 'Tratamientos y cirugías | Dr. Lisandro Zenón, cirujano en Goya';
+$title = $esPat ? 'Patologías frecuentes | Dr. Lisandro Zenón, Goya' : 'Tratamientos y cirugías | Dr. Lisandro Zenón, Goya';
 $description = $esPat
     ? 'Patologías quirúrgicas frecuentes: apendicitis, vesícula, hernias, eventraciones, hemorroides, pólipos y cáncer colorrectal. Dr. Lisandro Zenón, Goya.'
     : 'Tratamientos: videoendoscopia digestiva, cirugía laparoscópica, pared abdominal, anorrectal, oncológica y percutánea. Dr. Lisandro Zenón, Goya, Corrientes.';

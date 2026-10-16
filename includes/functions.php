@@ -38,7 +38,8 @@ function wa_url(?string $msg = null): string
 /**
  * <picture> con WebP y JPG de respaldo.
  * $src es la ruta del JPG desde la raíz web (/assets/img/...). El .webp debe existir al lado (tools/optimizar-imagenes.sh).
- * $o: width, height, class, lazy (bool), priority (bool), sizes, attrs (string ya escapado)
+ * $o: width, height, class, lazy (bool), priority (bool), sizes, attrs (string ya escapado),
+ *     src_m (otra imagen JPG para pantallas < 992 px, con su .webp al lado)
  */
 function picture(string $src, string $alt, array $o = []): string
 {
@@ -57,7 +58,14 @@ function picture(string $src, string $alt, array $o = []): string
     if (!$hasWebp) {
         return $img;
     }
-    return '<picture><source type="image/webp" srcset="' . h($webp) . '"'
+    $mobile = '';
+    if (!empty($o['src_m'])) {
+        $mq = ' media="(max-width: 991.98px)"';
+        $webpM = preg_replace('/\.(jpe?g|png)$/i', '.webp', $o['src_m']);
+        $mobile = (is_file($root . $webpM) ? '<source type="image/webp"' . $mq . ' srcset="' . h($webpM) . '">' : '')
+            . '<source' . $mq . ' srcset="' . h($o['src_m']) . '">';
+    }
+    return '<picture>' . $mobile . '<source type="image/webp" srcset="' . h($webp) . '"'
         . '>' . $img . '</picture>';
 }
 

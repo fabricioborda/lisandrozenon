@@ -5,10 +5,10 @@
  */
 return [
     'nombre'      => 'Dr. Lisandro Zenón',
-    'titulo'      => 'Médico Cirujano',
+    'titulo'      => 'Médico Cirujano Endoscopista',
     'base_url'    => 'https://www.lisandrozenon.com.ar',
     'ga_id'       => 'G-041SV6FCC1',
-    'assets_v'    => '20261016n',          // cambiar al modificar style.css / main.js (cache busting)
+    'assets_v'    => '20261016w',          // cambiar al modificar style.css / main.js (cache busting)
     'email'       => 'dr.lisandro.zenon@gmail.com',
     'whatsapp'    => '5493777700025',
     'whatsapp_msg'=> 'Hola Dr. Zenón, quisiera solicitar un turno.',

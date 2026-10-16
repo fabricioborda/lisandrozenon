@@ -116,7 +116,9 @@ section[id] { scroll-margin-top: calc(var(--header-h) + 8px); }
 .hero-slide { opacity: 0; transition: opacity 1s ease; }
 .hero-slide.is-active { opacity: 1; }
 .hero-slide picture, .hero-img { display: block; width: 100%; height: 100%; }
-.hero-img { object-fit: cover; }
+.hero-img { object-fit: cover; object-position: var(--pos, 50% 50%); }
+@media (min-width: 992px) and (max-width: 1199.98px) { .hero-img { object-position: var(--pos-t, var(--pos, 50% 50%)); } }
+@media (max-width: 991.98px) { .hero-img { object-position: var(--pos-m, var(--pos, 50% 50%)); } }
 .hero-overlay { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(14, 26, 58, 0.86) 0%, rgba(14, 26, 58, 0.62) 55%, rgba(14, 26, 58, 0.35) 100%); }
 .hero-content { position: relative; padding-block: 72px 96px; }
 .hero h1 { color: #fff; font-weight: 700; font-size: clamp(2rem, 5.2vw, 3.5rem); margin-bottom: 14px; }
@@ -127,7 +129,13 @@ section[id] { scroll-margin-top: calc(var(--header-h) + 8px); }
 .hero-dot { width: 28px; height: 28px; background: none; border: 0; padding: 0; position: relative; }
 .hero-dot::after { content: ""; position: absolute; inset: 9px; border-radius: 50%; background: rgba(255, 255, 255, 0.55); border: 1px solid rgba(255, 255, 255, 0.9); }
 .hero-dot.is-active::after { background: #fff; }
-@media (max-width: 575.98px) { .hero-content { padding-inline: 24px; padding-block: 56px 80px; } .hero-cta .btn-wa-lg, .hero-cta .btn-light-outline { width: 100%; } .hero-overlay { background: linear-gradient(180deg, rgba(14, 26, 58, 0.7), rgba(14, 26, 58, 0.85)); } }
+/* Móvil y tablet vertical (< 992 px): el texto va abajo y las caras quedan arriba, despejadas; el oscurecido es fuerte solo detrás del texto */
+@media (max-width: 991.98px) {
+  .hero { align-items: flex-end; }
+  .hero-content { padding-top: 200px; }
+  .hero .hero-overlay { background: linear-gradient(180deg, rgba(14, 26, 58, 0.1) 0%, rgba(14, 26, 58, 0.3) 28%, rgba(14, 26, 58, 0.82) 55%, rgba(14, 26, 58, 0.92) 100%); }
+}
+@media (max-width: 575.98px) { .hero-content { padding-inline: 24px; padding-block: 200px 64px; } .hero-cta .btn-wa-lg, .hero-cta .btn-light-outline { width: 100%; } }
 
 /*--- 7. Secciones ---*/
 .section { padding-block: clamp(48px, 8vw, 96px); }

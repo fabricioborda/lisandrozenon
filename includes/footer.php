@@ -8,7 +8,7 @@ $cons = cfg('consultorios');
       <div class="row gy-4">
         <div class="col-md-5">
           <img class="footer-logo" src="/assets/img/logo/logo-blanco.png" alt="Dr. Lisandro Benjamín Zenón, Médico Cirujano" width="403" height="260" loading="lazy" decoding="async">
-          <p class="footer-role">Goya, Corrientes</p>
+          <p class="footer-role"><?= h(cfg('titulo')) ?> · Goya, Corrientes</p>
           <p class="footer-note">La información de este sitio no reemplaza la consulta médica.</p>
         </div>
         <div class="col-sm-6 col-md-4">
