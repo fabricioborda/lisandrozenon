@@ -14,6 +14,11 @@ $jsonLd    = $jsonLd ?? [];
 $preload   = $preload ?? [];
 $sliders   = $sliders ?? false;
 $ogTitle   = $ogTitle ?? $title;
+if (es_test()) {
+    // Sitio de prueba: que ningún buscador lo indexe
+    $robots = 'noindex, nofollow';
+    if (!headers_sent()) { header('X-Robots-Tag: noindex, nofollow'); }
+}
 ?>
 <!doctype html>
 <html lang="es-AR">

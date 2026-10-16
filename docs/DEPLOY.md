@@ -4,7 +4,7 @@ El deploy lo hace el usuario (subida manual por SFTP). El agente nunca despliega
 
 ## Requisitos del hosting
 
-- **PHP 8.0 o superior** (el sitio usa `includes/*.php`; probado en PHP 8.0 / Apache 2.4). Sin PHP las páginas se verían como código fuente o vacías.
+- **PHP 7.4 o superior** (el servidor de producción usa Apache 2.4 con mod_php 7.4; el sitio está probado en 7.4 y 8.0). Sin PHP las páginas se verían como código fuente o vacías.
 - Apache con `.htaccess` habilitado (`AllowOverride All`) y, de preferencia, `mod_rewrite`, `mod_expires`, `mod_deflate`, `mod_headers`. Todo el `.htaccess` está en bloques `<IfModule>`: si falta un módulo, simplemente se ignora esa parte.
 - **Verificar después de subir** (en producción): que `https://www.lisandrozenon.com.ar/` muestre el sitio nuevo y que `index.html` **ya no exista** en el servidor (Debian/Apache sirven `index.html` antes que `index.php`; si queda el viejo, hay que borrarlo en el servidor).
 - Si el hosting NO ejecuta PHP: avisar; habría que pasar a HTML estático generado (ver `docs/PLAN-DE-TRABAJO.md`, F4.1 opción 2).
@@ -48,3 +48,74 @@ No hay formulario (se prioriza WhatsApp). `forms/` queda con un `.htaccess` que 
 - [ ] Probar el enlace compartido en WhatsApp/Facebook (Open Graph; si no se actualiza, usar el depurador de Facebook para limpiar su caché).
 - [ ] Google Analytics (`G-041SV6FCC1`): verificar que lleguen visitas y los eventos `contact` (WhatsApp, teléfono, email). En local el script de GA no se carga (solo en producción).
 - [ ] Confirmar en https://www.lisandrozenon.com.ar/ruta-inexistente que responde **404** con la página propia.
+
+## Sitio de prueba: test.lisandrozenon.com.ar
+
+Para validar la versión nueva sin tocar el sitio actual. Servidor: `ssh -t fabricio@24.199.65.161` (Apache 2.4 + PHP 7.4, Ubuntu). El sitio actual sigue en `/var/www/lisandrozenon.com.ar` (rama `master`); el de prueba va en una carpeta aparte con la rama `rediseno-multipagina`.
+
+En `test.` el sitio se sirve con `noindex` (meta + cabecera `X-Robots-Tag`), un `robots.txt` que bloquea todo (`robots-test.txt`) y **sin** Google Analytics. No redirige a www.
+
+### 1. Subir la rama a GitHub (desde la máquina local)
+
+```bash
+git push -u origin rediseno-multipagina
+```
+
+Ojo: el repo `fabricioborda/lisandrozenon` es **público**; la rama incluye `docs/` (plan, revisión médica, auditorías) y `CLAUDE.md`.
+
+### 2. DNS en Cloudflare
+
+Registro `A` → nombre `test` → `24.199.65.161`. Dejarlo **"DNS only" (nube gris)** hasta tener el certificado (paso 5); después se puede pasar a "Proxied".
+
+### 3. Carpeta y clon (en el servidor)
+
+```bash
+sudo mkdir /var/www/test.lisandrozenon.com.ar
+sudo chown fabricio:www-data /var/www/test.lisandrozenon.com.ar
+git clone -b rediseno-multipagina https://github.com/fabricioborda/lisandrozenon.git /var/www/test.lisandrozenon.com.ar
+```
+
+### 4. VirtualHost de Apache (en el servidor)
+
+`sudo nano /etc/apache2/sites-available/test.lisandrozenon.com.ar.conf`:
+
+```apache
+<Directory "/var/www/test.lisandrozenon.com.ar">
+    Options FollowSymLinks
+    AllowOverride All
+    Require all granted
+</Directory>
+
+<VirtualHost *:80>
+    ServerName test.lisandrozenon.com.ar
+    DocumentRoot /var/www/test.lisandrozenon.com.ar
+    ErrorLog /var/log/apache2/test.lisandrozenon.com.ar-error_log
+    CustomLog /var/log/apache2/test.lisandrozenon.com.ar-access_log common
+</VirtualHost>
+```
+
+```bash
+sudo apache2ctl configtest && sudo a2ensite test.lisandrozenon.com.ar && sudo systemctl reload apache2
+```
+
+### 5. Certificado HTTPS (en el servidor)
+
+```bash
+sudo certbot --apache -d test.lisandrozenon.com.ar
+```
+
+Crea `test.lisandrozenon.com.ar-le-ssl.conf`. Después se puede activar el proxy de Cloudflare.
+
+### 6. Actualizar el sitio de prueba (cada vez que haya cambios)
+
+Local: `git push`. Servidor:
+
+```bash
+cd /var/www/test.lisandrozenon.com.ar && git pull
+```
+
+### 7. Verificar
+
+- `https://test.lisandrozenon.com.ar/` muestra el sitio nuevo; `curl -sI https://test.lisandrozenon.com.ar/ | grep -i x-robots` → `noindex, nofollow`.
+- `https://test.lisandrozenon.com.ar/robots.txt` → `Disallow: /`.
+- `https://www.lisandrozenon.com.ar/` sigue mostrando el sitio actual, sin cambios.

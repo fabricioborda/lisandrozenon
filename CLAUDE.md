@@ -8,7 +8,7 @@ Website for Dr. Lisandro Zenón, a surgeon in Goya, Corrientes, Argentina (domai
 
 ## Development
 
-No build system, package manager, linter, or tests. **PHP 8.0 syntax only** (no 8.1+ features).
+No build system, package manager, linter, or tests. **Must run on PHP 7.4** (production Apache uses mod_php 7.4; local container is 8.0): no `match`, `?->`, `str_contains`, named args, etc. Check with `docker run --rm -v "$PWD":/app:ro php:7.4-cli php -l <file>`.
 
 The site runs locally at **http://lisandrozenon.local** via the shared Docker container `php80` (Apache 2.4 + PHP 8.0, also serving other projects; do not restart or modify it). This repo is bind-mounted to `/var/www/lisandrozenon`, so edits are live on refresh. The vhost is `/home/fabricio/proyectos/apache-sites/lisandrozenon.conf` (`AllowOverride All`, so `.htaccess` works). There is no local `php`: use `docker exec php80 php /var/www/lisandrozenon/...` for CLI scripts and `php -l`.
 
@@ -52,6 +52,7 @@ See `docs/AGREGAR-CONTENIDO.md` (new pathology/treatment = entry in `includes/co
 
 ## Gotchas
 
+- Test site `test.lisandrozenon.com.ar` (see `docs/DEPLOY.md`): `es_test()` adds noindex (meta + header) and `.htaccess` serves `robots-test.txt`; GA only loads on `lisandrozenon.com.ar`/`www` (`es_produccion()`).
 - No AMP: the old AMP markup was removed; don't reintroduce it.
 - `.htaccess` redirects to https+www only for hosts `lisandrozenon.com.ar` / `www.` (production is behind Cloudflare; uses `X-Forwarded-Proto` / `CF-Visitor`). Local never redirects. `<Directory>` is not allowed in `.htaccess`: use per-folder `.htaccess` files.
 - After editing `style.css` or `main.js`, bump `assets_v` in `includes/config.php`.

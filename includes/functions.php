@@ -151,10 +151,22 @@ function contenido(): array
     return $c;
 }
 
-/** ¿Estamos en el dominio de producción? (para no enviar estadísticas desde local). */
+/** Host de la petición, sin puerto. */
+function host_actual(): string
+{
+    return strtolower(preg_replace('/:\d+$/', '', $_SERVER['HTTP_HOST'] ?? ''));
+}
+
+/** ¿Es el sitio real? Solo lisandrozenon.com.ar y www (no test., no local): ahí se cargan las estadísticas. */
 function es_produccion(): bool
 {
-    return (bool) preg_match('/(^|\.)lisandrozenon\.com\.ar$/i', $_SERVER['HTTP_HOST'] ?? '');
+    return in_array(host_actual(), ['lisandrozenon.com.ar', 'www.lisandrozenon.com.ar'], true);
+}
+
+/** ¿Es el sitio de prueba (test.lisandrozenon.com.ar)? Se sirve con noindex y sin estadísticas. */
+function es_test(): bool
+{
+    return strpos(host_actual(), 'test.') === 0;
 }
 
 /** Registra la respuesta 404 y avisa a buscadores. */

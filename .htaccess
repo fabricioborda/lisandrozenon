@@ -15,6 +15,10 @@ ErrorDocument 404 /404.php
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # Sitio de prueba (test.lisandrozenon.com.ar): robots.txt que bloquea todo
+  RewriteCond %{HTTP_HOST} ^test\. [NC]
+  RewriteRule ^robots\.txt$ robots-test.txt [L]
+
   # ¿La petición original llegó por https? (conexión directa, proxy o Cloudflare)
   RewriteCond %{HTTPS} on [OR]
   RewriteCond %{HTTP:X-Forwarded-Proto} =https [OR]
