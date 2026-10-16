@@ -1,0 +1,75 @@
+# .htaccess del sitio (Apache 2.4). Todo está dentro de <IfModule> para no romper si falta un módulo.
+
+# --- Sin listado de directorios -------------------------------------------
+<IfModule mod_autoindex.c>
+  Options -Indexes
+</IfModule>
+
+# --- Documento de error 404 (404.php responde con código 404) ---------------
+ErrorDocument 404 /404.php
+
+# --- Redirección canónica a https://www.lisandrozenon.com.ar -----------------
+# Solo se aplica si el host es lisandrozenon.com.ar / www.lisandrozenon.com.ar: en local
+# (lisandrozenon.local) no redirige. Producción está detrás de Cloudflare, que termina el
+# HTTPS: se considera X-Forwarded-Proto / CF-Visitor para no caer en un bucle de redirecciones.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # ¿La petición original llegó por https? (conexión directa, proxy o Cloudflare)
+  RewriteCond %{HTTPS} on [OR]
+  RewriteCond %{HTTP:X-Forwarded-Proto} =https [OR]
+  RewriteCond %{HTTP:CF-Visitor} scheme[^a-z]+https
+  RewriteRule ^ - [E=PROTO_OK:1]
+
+  # Sin https  ->  https://www
+  RewriteCond %{HTTP_HOST} ^(www\.)?lisandrozenon\.com\.ar$ [NC]
+  RewriteCond %{ENV:PROTO_OK} !1
+  RewriteRule ^ https://www.lisandrozenon.com.ar%{REQUEST_URI} [R=301,L]
+
+  # Sin www  ->  www
+  RewriteCond %{HTTP_HOST} ^lisandrozenon\.com\.ar$ [NC]
+  RewriteRule ^ https://www.lisandrozenon.com.ar%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+# --- Carpetas internas que no deben ser públicas ---------------------------
+<IfModule mod_alias.c>
+  RedirectMatch 404 ^/(docs|tools|\.git|\.vscode|\.claude)(/|$)
+  RedirectMatch 404 ^/(CLAUDE\.md|\.gitignore|\.editorconfig)$
+</IfModule>
+
+# (El bloqueo de /forms/ está en forms/.htaccess)
+
+# --- Tipos MIME ------------------------------------------------------------
+<IfModule mod_mime.c>
+  AddType image/webp .webp
+  AddType application/manifest+json .webmanifest
+  AddType video/mp4 .mp4
+</IfModule>
+
+# --- Compresión ------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/xml application/xml application/json application/ld+json application/javascript text/javascript image/svg+xml application/manifest+json
+</IfModule>
+
+# --- Cache de archivos estáticos -------------------------------------------
+# style.css y main.js se cargan con ?v=AAAAMMDD (includes/config.php, 'assets_v'): al cambiarlos, subir ese valor.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType video/mp4 "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+  ExpiresByType application/manifest+json "access plus 1 week"
+</IfModule>
+
+# --- Cabeceras de seguridad básicas -------------------------------------------
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+</IfModule>

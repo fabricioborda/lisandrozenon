@@ -1,22 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
-
-<url>
-  <loc>https://www.lisandrozenon.com.ar/</loc>
-  <lastmod>2024-01-08T22:05:29+00:00</lastmod>
-  <priority>1.00</priority>
-</url>
-<url>
-  <loc>https://www.lisandrozenon.com.ar/.</loc>
-  <lastmod>2024-01-08T22:05:29+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://www.lisandrozenon.com.ar/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.lisandrozenon.com.ar/sobre-mi/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.lisandrozenon.com.ar/patologias/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.lisandrozenon.com.ar/tratamientos/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.lisandrozenon.com.ar/cirugia-sin-huellas/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.lisandrozenon.com.ar/equipamiento/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.lisandrozenon.com.ar/contacto/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.lisandrozenon.com.ar/patologias/apendicitis/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.lisandrozenon.com.ar/patologias/calculos-en-la-vesicula/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.lisandrozenon.com.ar/patologias/hernias/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.lisandrozenon.com.ar/patologias/eventraciones/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.lisandrozenon.com.ar/patologias/hemorroides/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.lisandrozenon.com.ar/patologias/polipos-colorrectales/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.lisandrozenon.com.ar/patologias/cancer-de-colon-y-recto/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.lisandrozenon.com.ar/tratamientos/videoendoscopia-digestiva-alta/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.lisandrozenon.com.ar/tratamientos/videoendoscopia-digestiva-baja/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.lisandrozenon.com.ar/tratamientos/apendicectomia-laparoscopica/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.lisandrozenon.com.ar/tratamientos/colecistectomia-laparoscopica/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.lisandrozenon.com.ar/tratamientos/cirugia-de-pared-abdominal/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.lisandrozenon.com.ar/tratamientos/cirugia-laparoscopica-colorrectal/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.lisandrozenon.com.ar/tratamientos/cirugia-anorrectal/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.lisandrozenon.com.ar/tratamientos/cirugia-oncologica/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
+  <url>
+    <loc>https://www.lisandrozenon.com.ar/tratamientos/cirugia-percutanea/</loc>
+    <lastmod>2026-10-16</lastmod>
+  </url>
 </urlset>

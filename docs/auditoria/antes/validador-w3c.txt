@@ -1,0 +1,54 @@
+:1.16-2.8: error: Attribute “⚡” not allowed on element “html” at this point.
+:6.23-6.55: error: Stray start tag “html”.
+:21.3-21.70: info: Trailing slash on void elements has no effect and interacts badly with unquoted attribute values.
+:24.3-24.218: info: Trailing slash on void elements has no effect and interacts badly with unquoted attribute values.
+:32.3-32.223: error: Bad value “https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Roboto:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i” for attribute “href” on element “link”: Illegal character in query. “|” is not allowed.
+:47.3-47.67: info: Trailing slash on void elements has no effect and interacts badly with unquoted attribute values.
+:49.3-49.25: error: Attribute “amp-boilerplate” not allowed on element “style” at this point.
+:49.642-49.664: error: Attribute “amp-boilerplate” not allowed on element “style” at this point.
+:73.9-73.144: error: Bad value “https://wa.me/5493777700025?text=Hola, quisiera ponerme en contacto con usted” for attribute “href” on element “a”: Illegal character in query. Space is not allowed.
+:114.29-114.35: error: Stray end tag “span”.
+:253.17-253.462: error: Bad value “true” for attribute “allowfullscreen” on element “iframe”.
+:253.17-253.462: info warning: The “scrolling” attribute on the “iframe” element is obsolete. Use CSS instead.
+:253.17-253.462: info warning: The “frameborder” attribute on the “iframe” element is obsolete. Use CSS instead.
+:277.13-277.83: error: Attribute “href” not allowed on element “div” at this point.
+:286.13-286.83: error: Attribute “href” not allowed on element “div” at this point.
+:298.13-298.83: error: Attribute “href” not allowed on element “div” at this point.
+:304.15-304.17: error: Element “p” not allowed as child of element “ul” in this context. (Suppressing further errors from this subtree.)
+:305.15-305.17: error: Element “p” not allowed as child of element “ul” in this context. (Suppressing further errors from this subtree.)
+:306.15-306.17: error: Element “p” not allowed as child of element “ul” in this context. (Suppressing further errors from this subtree.)
+:307.15-307.17: error: Element “p” not allowed as child of element “ul” in this context. (Suppressing further errors from this subtree.)
+:313.13-313.83: error: Attribute “href” not allowed on element “div” at this point.
+:324.13-324.83: error: Attribute “href” not allowed on element “div” at this point.
+:328.19-328.21: error: Element “p” not allowed as child of element “ul” in this context. (Suppressing further errors from this subtree.)
+:329.19-329.21: error: Element “p” not allowed as child of element “ul” in this context. (Suppressing further errors from this subtree.)
+:339.13-339.83: error: Attribute “href” not allowed on element “div” at this point.
+:348.13-348.83: error: Attribute “href” not allowed on element “div” at this point.
+:373.13-373.84: error: Attribute “href” not allowed on element “div” at this point.
+:377.19-377.97: error: Bad value “assets/video/Videoendoscopia Digestiva Alta.mov” for attribute “src” on element “source”: Illegal character in path segment. Space is not allowed.
+:384.13-384.84: error: Attribute “href” not allowed on element “div” at this point.
+:388.19-388.97: error: Bad value “assets/video/Videoendoscopia Digestiva Baja.mp4” for attribute “src” on element “source”: Illegal character in path segment. Space is not allowed.
+:395.13-395.84: error: Attribute “href” not allowed on element “div” at this point.
+:402.13-402.84: error: Attribute “href” not allowed on element “div” at this point.
+:407.19-407.100: error: Bad value “assets/video/Cirugía Laparoscópica de Vesícula.mp4” for attribute “src” on element “source”: Illegal character in path segment. Space is not allowed.
+:414.13-414.84: error: Attribute “href” not allowed on element “div” at this point.
+:419.19-419.107: error: Bad value “assets/video/Cirugía Laparoscópica de Pared Abdominal.mp4” for attribute “src” on element “source”: Illegal character in path segment. Space is not allowed.
+:426.13-426.84: error: Attribute “href” not allowed on element “div” at this point.
+:432.13-432.84: error: Attribute “href” not allowed on element “div” at this point.
+:438.13-438.84: error: Attribute “href” not allowed on element “div” at this point.
+:442.15-442.19: info: Trailing slash on void elements has no effect and interacts badly with unquoted attribute values.
+:446.15-446.19: info: Trailing slash on void elements has no effect and interacts badly with unquoted attribute values.
+:450.15-450.19: info: Trailing slash on void elements has no effect and interacts badly with unquoted attribute values.
+:457.13-457.84: error: Attribute “href” not allowed on element “div” at this point.
+:461.15-461.19: info: Trailing slash on void elements has no effect and interacts badly with unquoted attribute values.
+:465.15-465.19: info: Trailing slash on void elements has no effect and interacts badly with unquoted attribute values.
+:469.15-469.19: info: Trailing slash on void elements has no effect and interacts badly with unquoted attribute values.
+:496.19-496.21: error: Element “p” not allowed as child of element “ol” in this context. (Suppressing further errors from this subtree.)
+:498.19-498.21: error: Element “p” not allowed as child of element “ol” in this context. (Suppressing further errors from this subtree.)
+:500.19-500.21: error: Element “p” not allowed as child of element “ol” in this context. (Suppressing further errors from this subtree.)
+:612.15-612.118: error: Bad value “https://wa.me/5493777700025?text=Hola, quisiera ponerme en contacto con usted” for attribute “href” on element “a”: Illegal character in query. Space is not allowed.
+:1.16-2.8: info warning: This document appears to be written in Spanish. Consider adding “lang="es"” (or variant) to the “html” start tag.
+:177.13-177.16: error: The heading “h5” (with computed level 5) follows the heading “h3” (with computed level 3), skipping 1 heading level.
+:440.15-440.18: error: The heading “h5” (with computed level 5) follows the heading “h2” (with computed level 2), skipping 2 heading levels.
+:491.13-491.16: error: The heading “h6” (with computed level 6) follows the heading “h2” (with computed level 2), skipping 3 heading levels.
+:621.19-621.22: error: The heading “h4” (with computed level 4) follows the heading “h2” (with computed level 2), skipping 1 heading level.

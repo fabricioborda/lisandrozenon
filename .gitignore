@@ -10,3 +10,9 @@ Thumbs.db
 
 # Local config
 *.local
+
+# Capturas y auditorías generadas (no versionar)
+docs/capturas/
+
+# Informes de Lighthouse (pesados; se regeneran con tools/lighthouse.sh)
+docs/auditoria/**/lighthouse.report.*

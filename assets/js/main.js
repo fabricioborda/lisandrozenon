@@ -1,319 +1,136 @@
 /**
-* Template Name: Medicio
-* Updated: Sep 18 2023 with Bootstrap v5.3.2
-* Template URL: https://bootstrapmade.com/medicio-free-bootstrap-theme/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-(function() {
-  "use strict";
+ * Interactividad del sitio del Dr. Lisandro Zenón.
+ * JavaScript propio sin dependencias; Swiper y GLightbox se cargan solo en las páginas que los usan
+ * y cada bloque se inicializa únicamente si existe su elemento.
+ */
+(function () {
+  'use strict';
 
-  /**
-   * Easy selector helper function
-   */
-  const select = (el, all = false) => {
-    el = el.trim()
-    if (all) {
-      return [...document.querySelectorAll(el)]
-    } else {
-      return document.querySelector(el)
-    }
+  var reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var $ = function (sel, root) { return (root || document).querySelector(sel); };
+  var $$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
+
+  /* ---------- Menú móvil y submenús ---------- */
+  var toggle = $('.nav-toggle');
+  var nav = $('#navbar');
+
+  function setMenu(open) {
+    if (!toggle || !nav) return;
+    nav.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    var icon = $('i', toggle);
+    if (icon) { icon.className = 'bi ' + (open ? 'bi-x-lg' : 'bi-list'); }
+    document.body.style.overflow = open && window.innerWidth < 992 ? 'hidden' : '';
   }
 
-  /**
-   * Easy event listener function
-   */
-  const on = (type, el, listener, all = false) => {
-    let selectEl = select(el, all)
-    if (selectEl) {
-      if (all) {
-        selectEl.forEach(e => e.addEventListener(type, listener))
-      } else {
-        selectEl.addEventListener(type, listener)
-      }
-    }
-  }
-
-  /**
-   * Easy on scroll event listener 
-   */
-  const onscroll = (el, listener) => {
-    el.addEventListener('scroll', listener)
-  }
-
-  /**
-   * Navbar links active state on scroll
-   */
-  let navbarlinks = select('#navbar .scrollto', true)
-  const navbarlinksActive = () => {
-    let position = window.scrollY + 200
-    navbarlinks.forEach(navbarlink => {
-      if (!navbarlink.hash) return
-      let section = select(navbarlink.hash)
-      if (!section) return
-      if (position >= section.offsetTop && position <= (section.offsetTop + section.offsetHeight)) {
-        navbarlink.classList.add('active')
-      } else {
-        navbarlink.classList.remove('active')
-      }
-    })
-  }
-  window.addEventListener('load', navbarlinksActive)
-  onscroll(document, navbarlinksActive)
-
-  /**
-   * Scrolls to an element with header offset
-   */
-  const scrollto = (el) => {
-    let header = select('#header')
-    let offset = header.offsetHeight
-
-    let elementPos = select(el).offsetTop
-    window.scrollTo({
-      top: elementPos - offset,
-      behavior: 'smooth'
-    })
-  }
-
-  /**
-   * Toggle .header-scrolled class to #header when page is scrolled
-   */
-  let selectHeader = select('#header')
-  let selectTopbar = select('#topbar')
-  if (selectHeader) {
-    const headerScrolled = () => {
-      if (window.scrollY > 100) {
-        selectHeader.classList.add('header-scrolled')
-        if (selectTopbar) {
-          selectTopbar.classList.add('topbar-scrolled')
-        }
-      } else {
-        selectHeader.classList.remove('header-scrolled')
-        if (selectTopbar) {
-          selectTopbar.classList.remove('topbar-scrolled')
-        }
-      }
-    }
-    window.addEventListener('load', headerScrolled)
-    onscroll(document, headerScrolled)
-  }
-
-  /**
-   * Back to top button
-   */
-  let backtotop = select('.back-to-top')
-  if (backtotop) {
-    const toggleBacktotop = () => {
-      if (window.scrollY > 100) {
-        backtotop.classList.add('active')
-      } else {
-        backtotop.classList.remove('active')
-      }
-    }
-    window.addEventListener('load', toggleBacktotop)
-    onscroll(document, toggleBacktotop)
-  }
-
-  /**
-   * Mobile nav toggle
-   */
-  on('click', '.mobile-nav-toggle', function(e) {
-    select('#navbar').classList.toggle('navbar-mobile')
-    this.classList.toggle('bi-list')
-    this.classList.toggle('bi-x')
-  })
-
-  /**
-   * Mobile nav dropdowns activate
-   */
-  on('click', '.navbar .dropdown > a', function(e) {
-    if (select('#navbar').classList.contains('navbar-mobile')) {
-      e.preventDefault()
-      this.nextElementSibling.classList.toggle('dropdown-active')
-    }
-  }, true)
-
-  /**
-   * Scrool with ofset on links with a class name .scrollto
-   */
-  on('click', '.scrollto', function(e) {
-    if (select(this.hash)) {
-      e.preventDefault()
-
-      let navbar = select('#navbar')
-      if (navbar.classList.contains('navbar-mobile')) {
-        navbar.classList.remove('navbar-mobile')
-        let navbarToggle = select('.mobile-nav-toggle')
-        navbarToggle.classList.toggle('bi-list')
-        navbarToggle.classList.toggle('bi-x')
-      }
-      scrollto(this.hash)
-    }
-  }, true)
-
-  /**
-   * Scroll with ofset on page load with hash links in the url
-   */
-  window.addEventListener('load', () => {
-    if (window.location.hash) {
-      if (select(window.location.hash)) {
-        scrollto(window.location.hash)
-      }
-    }
-  });
-
-  /**
-   * Preloader
-   */
-  let preloader = select('#preloader');
-  if (preloader) {
-    window.addEventListener('load', () => {
-      preloader.remove()
+  if (toggle && nav) {
+    toggle.addEventListener('click', function () { setMenu(!nav.classList.contains('is-open')); });
+    nav.addEventListener('click', function (e) {
+      var a = e.target.closest('a');
+      if (a && nav.classList.contains('is-open')) { setMenu(false); }
     });
+    window.addEventListener('resize', function () { if (window.innerWidth >= 992) { setMenu(false); } });
   }
 
-  /**
-   * Hero carousel indicators
-   */
-  /*
-  let heroCarouselIndicators = select("#inicio-carousel-indicators")
-  let heroCarouselItems = select('#inicioCarousel .carousel-item', true)
-
-  heroCarouselItems.forEach((item, index) => {
-    (index === 0) ?
-    heroCarouselIndicators.innerHTML += "<li data-bs-target='#inicioCarousel' data-bs-slide-to='" + index + "' class='active'></li>":
-      heroCarouselIndicators.innerHTML += "<li data-bs-target='#inicioCarousel' data-bs-slide-to='" + index + "'></li>"
+  $$('.sub-toggle').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var li = btn.closest('.has-sub');
+      var open = !li.classList.contains('is-open');
+      $$('.has-sub.is-open').forEach(function (o) {
+        if (o !== li) { o.classList.remove('is-open'); $('.sub-toggle', o).setAttribute('aria-expanded', 'false'); }
+      });
+      li.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
   });
-*/
 
-const myCarouselElement = document.querySelector('#carouselExampleCaptions')
-const carousel = new bootstrap.Carousel(myCarouselElement, {
-  interval: 5000,
-  cycle: true
-});
-carousel.cycle();
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape') return;
+    if (nav && nav.classList.contains('is-open')) { setMenu(false); if (toggle) toggle.focus(); }
+    $$('.has-sub.is-open').forEach(function (li) { li.classList.remove('is-open'); $('.sub-toggle', li).setAttribute('aria-expanded', 'false'); });
+  });
 
+  /* ---------- Botón "volver arriba" ---------- */
+  var backToTop = $('.back-to-top');
+  if (backToTop) {
+    var onScroll = function () { backToTop.classList.toggle('active', window.scrollY > 300); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
 
+  /* ---------- Hero: fondo rotativo (se detiene con prefers-reduced-motion o al interactuar) ---------- */
+  var hero = $('[data-hero]');
+  if (hero) {
+    var slides = $$('.hero-slide', hero);
+    var dots = $$('.hero-dot', hero);
+    var current = 0;
+    var timer = null;
+    var show = function (i) {
+      current = (i + slides.length) % slides.length;
+      slides.forEach(function (s, n) { s.classList.toggle('is-active', n === current); });
+      dots.forEach(function (d, n) { d.classList.toggle('is-active', n === current); d.setAttribute('aria-pressed', n === current ? 'true' : 'false'); });
+    };
+    var stop = function () { if (timer) { clearInterval(timer); timer = null; } };
+    var start = function () { if (!reducedMotion && slides.length > 1) { stop(); timer = setInterval(function () { show(current + 1); }, 6000); } };
+    dots.forEach(function (d, n) { d.addEventListener('click', function () { show(n); stop(); }); });
+    hero.addEventListener('mouseenter', stop);
+    hero.addEventListener('mouseleave', start);
+    document.addEventListener('visibilitychange', function () { document.hidden ? stop() : start(); });
+    start();
+  }
 
-  /**
-   * Testimonials slider
-   */
-  new Swiper('.testimonials-slider', {
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    slidesPerView: 'auto',
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    },
-    breakpoints: {
-      320: {
-        slidesPerView: 1,
-        spaceBetween: 20
-      },
+  /* ---------- Mapas: se cargan al hacer clic ---------- */
+  $$('[data-map]').forEach(function (box) {
+    var btn = $('.map-load', box);
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      var iframe = document.createElement('iframe');
+      iframe.src = box.getAttribute('data-map');
+      iframe.title = box.getAttribute('data-map-title') || 'Mapa';
+      iframe.loading = 'lazy';
+      iframe.setAttribute('allowfullscreen', '');
+      iframe.referrerPolicy = 'no-referrer-when-downgrade';
+      box.replaceChildren(iframe);
+    });
+  });
 
-      1200: {
-        slidesPerView: 3,
-        spaceBetween: 20
-      }
+  /* ---------- Sliders y lightbox (solo si la librería y el elemento existen) ---------- */
+  function sliderOptions(root, breakpoints) {
+    var opts = {
+      speed: 400,
+      loop: true,
+      slidesPerView: 1,
+      spaceBetween: 20,
+      pagination: { el: root.querySelector('.swiper-pagination'), type: 'bullets', clickable: true },
+      navigation: { nextEl: root.querySelector('.swiper-btn-next'), prevEl: root.querySelector('.swiper-btn-prev') },
+      breakpoints: breakpoints
+    };
+    if (!reducedMotion) { opts.autoplay = { delay: 5000, disableOnInteraction: true, pauseOnMouseEnter: true }; }
+    return opts;
+  }
+
+  window.addEventListener('DOMContentLoaded', function () {
+    if (typeof Swiper !== 'undefined') {
+      var g = $('.gallery-slider');
+      if (g) { new Swiper(g, sliderOptions(g, { 640: { slidesPerView: 2 }, 992: { slidesPerView: 3 } })); }
+      var e = $('.gallery-equipamiento2');
+      if (e) { new Swiper(e, sliderOptions(e, { 640: { slidesPerView: 2 }, 992: { slidesPerView: 3 } })); }
+    }
+    if (typeof GLightbox !== 'undefined' && $('.gallery-lightbox')) {
+      GLightbox({ selector: '.gallery-lightbox' });
     }
   });
 
-  /**
-   * Clients Slider
-   */
-  new Swiper('.gallery-slider', {
-    speed: 400,
-    loop: true,
-    centeredSlides: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    slidesPerView: 'auto',
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    },
-    breakpoints: {
-      320: {
-        slidesPerView: 1,
-        spaceBetween: 20
-      },
-      640: {
-        slidesPerView: 3,
-        spaceBetween: 20
-      },
-      992: {
-        slidesPerView: 1.5,
-        spaceBetween: 20
-      }
-    }
+  /* ---------- Eventos de conversión en Google Analytics ---------- */
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest('a[href]');
+    if (!a || typeof window.gtag !== 'function') return;
+    var href = a.getAttribute('href');
+    var method = null;
+    if (href.indexOf('https://wa.me') === 0) { method = 'whatsapp'; }
+    else if (href.indexOf('tel:') === 0) { method = 'telefono'; }
+    else if (href.indexOf('mailto:') === 0) { method = 'email'; }
+    if (method) { window.gtag('event', 'contact', { method: method }); }
   });
-
-  new Swiper('.gallery-equipamiento2', {
-    speed: 400,
-    loop: true,
-    centeredSlides: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    slidesPerView: 'auto',
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    },
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    },
-    breakpoints: {
-      320: {
-        slidesPerView: 1,
-        spaceBetween: 20
-      },
-      640: {
-        slidesPerView: 1,
-        spaceBetween: 20
-      },
-      992: {
-        slidesPerView: 4,
-        spaceBetween: 20
-      }
-    }
-  });
-
-
-  /**
-   * Initiate gallery lightbox 
-   */
-  const galleryLightbox = GLightbox({
-    selector: '.gallery-lightbox'
-  });
-
-  /**
-   * Animation on scroll
-   */
-  window.addEventListener('load', () => {
-    AOS.init({
-      duration: 1000,
-      easing: 'ease-in-out',
-      once: true,
-      mirror: false
-    })
-  });
-
-  /**
-   * Initiate Pure Counter 
-   */
-  new PureCounter();
-
-})()
+})();
