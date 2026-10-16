@@ -18,14 +18,14 @@ require __DIR__ . '/../includes/header.php';
     <section id="cirugiasinhuellas" class="section">
       <div class="container">
         <h1 class="page-title">Cirugía sin huellas</h1>
-        <div class="row g-4 g-lg-5 align-items-start">
+        <div class="row g-4 g-lg-5 align-items-center">
           <div class="col-lg-7 prose">
             <h2>¿Qué es la cirugía sin huellas?</h2>
             <p>La cirugía sin huellas es una técnica quirúrgica mínimamente invasiva de última generación, que busca obtener los mejores resultados estéticos y funcionales con el menor trauma posible para el paciente.</p>
             <p>A diferencia de la laparoscopía convencional, esta técnica se basa en tres pilares fundamentales:</p>
           </div>
           <div class="col-lg-5">
-            <?= picture('/assets/img/equipamiento/instrumental-cirugia-sin-huellas-2.jpg', 'Instrumental de 3 mm para cirugía sin huellas', ['class' => 'img-fluid rounded-card', 'priority' => true]) ?>
+            <?= picture('/assets/img/equipamiento/instrumental-cirugia-sin-huellas-2.jpg', 'Instrumental de 3 mm para cirugía sin huellas', ['class' => 'img-fluid rounded-card img-4x3', 'priority' => true]) ?>
           </div>
         </div>
 

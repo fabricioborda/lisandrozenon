@@ -39,6 +39,7 @@ section[id] { scroll-margin-top: calc(var(--header-h) + 8px); }
 .center { text-align: center; }
 .lead { font-size: 1.15rem; color: var(--color-muted); }
 .rounded-card { border-radius: var(--radius); box-shadow: var(--shadow); }
+.img-4x3 { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
 
 /*--- 3. Accesibilidad ---*/
 :focus-visible { outline: 3px solid var(--color-primary-dark); outline-offset: 3px; border-radius: 4px; }
@@ -153,7 +154,7 @@ section[id] { scroll-margin-top: calc(var(--header-h) + 8px); }
 .card-link strong { color: var(--color-primary-dark); font-family: var(--font-heading); }
 .card-link .card-ico { width: 44px; height: 44px; font-size: 1.2rem; }
 .equip-thumb { margin: 0; }
-.equip-thumb img { border-radius: var(--radius); width: 100%; height: auto; box-shadow: var(--shadow); }
+.equip-thumb img { border-radius: var(--radius); width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; box-shadow: var(--shadow); }
 
 /*--- 9. Contenido ---*/
 .prose { font-size: 1.05rem; }
@@ -164,7 +165,7 @@ section[id] { scroll-margin-top: calc(var(--header-h) + 8px); }
 .video-box { margin: 0 0 1.6rem; }
 .video-box video { background: #000; border-radius: var(--radius); }
 .figure-img-box { margin: 2rem 0 0; max-width: 420px; }
-.figure-img-box img { border-radius: var(--radius); box-shadow: var(--shadow); }
+.figure-img-box img { border-radius: var(--radius); box-shadow: var(--shadow); width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; }
 .figure-img-box figcaption { font-size: 0.9rem; color: var(--color-muted); margin-top: 8px; }
 .related-title { font-size: 1.3rem; margin: 2.5rem 0 1rem; }
 .cta-turno { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; margin-top: 2.5rem; padding: 24px 28px; border-radius: var(--radius); background: var(--color-tint); border: 1px solid var(--color-border); }
@@ -190,7 +191,8 @@ section[id] { scroll-margin-top: calc(var(--header-h) + 8px); }
 
 /*--- 10. Sliders (Swiper) ---*/
 .gallery-slider, .gallery-equipamiento2 { position: relative; padding-bottom: 44px; }
-.gallery-slider .swiper-slide img, .gallery-equipamiento2 .swiper-slide img { width: 100%; height: auto; border-radius: var(--radius); }
+/* Mismas proporciones para todas las fotos de un mismo slider (las fotos se recortan, no se deforman) */
+.gallery-slider .swiper-slide img, .gallery-equipamiento2 .swiper-slide img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius); }
 .gallery-slider .swiper-slide a, .gallery-equipamiento2 .swiper-slide a { display: block; }
 .equip-caption { font-size: 0.92rem; color: var(--color-text); text-align: center; padding: 10px 8px 0; margin: 0; }
 .swiper-pagination { bottom: 6px !important; }
@@ -240,4 +242,13 @@ section[id] { scroll-margin-top: calc(var(--header-h) + 8px); }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+/* Móvil: fichas de patologías/tratamientos compactas (ícono al lado del título; toda la ficha es el link) */
+@media (max-width: 767.98px) {
+  .topic-card { display: grid; grid-template-columns: 44px 1fr; column-gap: 14px; align-items: start; padding: 16px; }
+  .topic-card .card-ico { grid-row: 1 / span 2; width: 44px; height: 44px; font-size: 1.25rem; margin: 0; }
+  .topic-card h2, .topic-card h3 { font-size: 1.05rem; margin: 2px 0 4px; }
+  .topic-card p { margin: 0; font-size: 0.93rem; }
+  .topic-card .more { display: none; }
 }

@@ -18,7 +18,7 @@ $hc = $cardHeading ?? 'h3';
                 <a class="btn-outline" href="tel:<?= h($c['tel']) ?>"><?= icono('telephone') ?> Llamar</a>
               </div>
 <?php if ($mapas): ?>
-              <div class="map-box ratio ratio-4x3" data-map="<?= h($c['mapa']) ?>" data-map-title="Mapa de <?= h($c['nombre']) ?>">
+              <div class="map-box ratio ratio-16x9" data-map="<?= h($c['mapa']) ?>" data-map-title="Mapa de <?= h($c['nombre']) ?>">
                 <button type="button" class="map-load"><?= icono('map') ?><span>Ver mapa</span></button>
               </div>
 <?php endif; ?>

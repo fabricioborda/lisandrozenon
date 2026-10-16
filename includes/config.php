@@ -8,7 +8,7 @@ return [
     'titulo'      => 'Médico Cirujano',
     'base_url'    => 'https://www.lisandrozenon.com.ar',
     'ga_id'       => 'G-041SV6FCC1',
-    'assets_v'    => '20261016b',          // cambiar al modificar style.css / main.js (cache busting)
+    'assets_v'    => '20261016d',          // cambiar al modificar style.css / main.js (cache busting)
     'email'       => 'dr.lisandro.zenon@gmail.com',
     'whatsapp'    => '5493777700025',
     'whatsapp_msg'=> 'Hola Dr. Zenón, quisiera solicitar un turno.',

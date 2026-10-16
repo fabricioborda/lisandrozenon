@@ -113,7 +113,7 @@ require __DIR__ . '/includes/header.php';
             <a class="btn-primary-x" href="/cirugia-sin-huellas/">Conocer la técnica <?= icono('arrow-right') ?></a>
           </div>
           <div class="col-md-5">
-            <?= picture('/assets/img/equipamiento/instrumental-cirugia-sin-huellas-1.jpg', 'Instrumental de 3 mm para cirugía sin huellas', ['class' => 'img-fluid rounded-card']) ?>
+            <?= picture('/assets/img/equipamiento/instrumental-cirugia-sin-huellas-1.jpg', 'Instrumental de 3 mm para cirugía sin huellas', ['class' => 'img-fluid rounded-card img-4x3']) ?>
           </div>
         </div>
       </div>

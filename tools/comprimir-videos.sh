@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # Comprime un video a MP4 H.264 720p (CRF 27, AAC 96k, faststart) y genera un poster JPG.
+# Revisar el poster generado: si muestra un logo o una placa de título, elegir otro segundo con -ss (ver docs/AGREGAR-CONTENIDO.md).
 # Uso: tools/comprimir-videos.sh "original.mov" nombre-en-kebab-case   -> assets/video/nombre.mp4 y .jpg
 # Requiere ffmpeg. Verificar luego con ffprobe que la duración coincide con la del original.
 set -euo pipefail
