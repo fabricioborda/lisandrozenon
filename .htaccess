@@ -19,6 +19,12 @@ ErrorDocument 404 /404.php
   RewriteCond %{HTTP_HOST} ^test\. [NC]
   RewriteRule ^robots\.txt$ robots-test.txt [L]
 
+  # Páginas del sitio anterior (index.html y copias del template)  ->  home
+  # En producción va directo a https://www (un solo salto, con o sin www/https); en otros hosts, a "/".
+  RewriteCond %{HTTP_HOST} ^(www\.)?lisandrozenon\.com\.ar$ [NC]
+  RewriteRule ^(index|index_copy|inner-page)\.html$ https://www.lisandrozenon.com.ar/ [R=301,L,NC]
+  RewriteRule ^(index|index_copy|inner-page)\.html$ / [R=301,L,NC]
+
   # ¿La petición original llegó por https? (conexión directa, proxy o Cloudflare)
   RewriteCond %{HTTPS} on [OR]
   RewriteCond %{HTTP:X-Forwarded-Proto} =https [OR]
