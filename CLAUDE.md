@@ -12,7 +12,7 @@ No build system, package manager, linter, or tests. **Must run on PHP 7.4** (pro
 
 The site runs locally at **http://lisandrozenon.local** via the shared Docker container `php80` (Apache 2.4 + PHP 8.0, also serving other projects; do not restart or modify it). This repo is bind-mounted to `/var/www/lisandrozenon`, so edits are live on refresh. The vhost is `/home/fabricio/proyectos/apache-sites/lisandrozenon.conf` (`AllowOverride All`, so `.htaccess` works). There is no local `php`: use `docker exec php80 php /var/www/lisandrozenon/...` for CLI scripts and `php -l`.
 
-Deployment is a manual upload by the user (VS Code SFTP, `.vscode/sftp.json`, gitignored). Never deploy. See `docs/DEPLOY.md` (what to upload / not upload, Cloudflare, Search Console checklist).
+Deployment: production (`/var/www/lisandrozenon.com.ar` on `fabricio@24.199.65.161`) is a git clone on `master`; the user pushes and then runs `git pull` there. Never deploy or pull to production without the user asking. See `docs/DEPLOY.md`.
 
 ## Architecture
 
@@ -52,7 +52,7 @@ See `docs/AGREGAR-CONTENIDO.md` (new pathology/treatment = entry in `includes/co
 
 ## Gotchas
 
-- Test site `test.lisandrozenon.com.ar` (see `docs/DEPLOY.md`): `es_test()` adds noindex (meta + header) and `.htaccess` serves `robots-test.txt`; GA only loads on `lisandrozenon.com.ar`/`www` (`es_produccion()`).
+- Test site `test.lisandrozenon.com.ar` was taken down (steps to recreate in `docs/DEPLOY.md`); the code still supports it: `es_test()` adds noindex (meta + header) and `.htaccess` serves `robots-test.txt`; GA only loads on `lisandrozenon.com.ar`/`www` (`es_produccion()`).
 - No AMP: the old AMP markup was removed; don't reintroduce it.
 - `.htaccess` redirects to https+www only for hosts `lisandrozenon.com.ar` / `www.` (production is behind Cloudflare; uses `X-Forwarded-Proto` / `CF-Visitor`). Local never redirects. `<Directory>` is not allowed in `.htaccess`: use per-folder `.htaccess` files.
 - After editing `style.css` or `main.js`, bump `assets_v` in `includes/config.php`.

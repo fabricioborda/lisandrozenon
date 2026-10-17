@@ -49,7 +49,20 @@ No hay formulario (se prioriza WhatsApp). `forms/` queda con un `.htaccess` que 
 - [ ] Google Analytics (`G-041SV6FCC1`): verificar que lleguen visitas y los eventos `contact` (WhatsApp, teléfono, email). En local el script de GA no se carga (solo en producción).
 - [ ] Confirmar en https://www.lisandrozenon.com.ar/ruta-inexistente que responde **404** con la página propia.
 
+## Publicar en producción
+
+Producción (`/var/www/lisandrozenon.com.ar` en `fabricio@24.199.65.161`) es un clon del repo en la rama `master`. Para publicar: `git push` desde la máquina local y, en el servidor:
+
+```bash
+cd /var/www/lisandrozenon.com.ar && git pull
+```
+
+Para volver a una versión anterior: `git checkout <commit>` en esa carpeta. Backup del sitio anterior al rediseño: `~/backups/lisandrozenon-20261017-172109/` en el servidor.
+
 ## Sitio de prueba: test.lisandrozenon.com.ar
+
+> Se usó para validar el rediseño y se dio de baja el 2026-10-17. Los pasos siguientes sirven para volver a montarlo si hace falta (con la rama `master` o la que se quiera probar).
+
 
 Para validar la versión nueva sin tocar el sitio actual. Servidor: `ssh -t fabricio@24.199.65.161` (Apache 2.4 + PHP 7.4, Ubuntu). El sitio actual sigue en `/var/www/lisandrozenon.com.ar` (rama `master`); el de prueba va en una carpeta aparte con la rama `rediseno-multipagina`.
 
